@@ -5,30 +5,47 @@
 using std::vector;
 using std::swap;
 
-int partition2(vector<int> &a, int l, int r) {
-  int x = a[l];
-  int j = l;
-  for (int i = l + 1; i <= r; i++) {
-    if (a[i] <= x) {
-      j++;
-      swap(a[i], a[j]);
+int partition2(vector<int> &array, int p, int r) {
+
+  int pivot = array[p];
+  int i = p;
+
+  for (int j = p + 1; j <= r; j++) {
+    if (array[j] <= pivot) {
+      i++;
+      swap(array[j], array[i]);
     }
   }
-  swap(a[l], a[j]);
-  return j;
+  swap(array[p], array[i]);
+  return i;
 }
 
-void randomized_quick_sort(vector<int> &a, int l, int r) {
-  if (l >= r) {
+int partition3(vector<int> &array, int p, int r) {
+
+  int pivot = array[p];
+  int i = p;
+
+  for (int j = p + 1; j <= r; j++) {
+    if (array[j] <= pivot) {
+      i++;
+      swap(array[j], array[i]);
+    }
+  }
+  swap(array[p], array[i]);
+  return i;
+}
+
+void randomized_quick_sort(vector<int> &array, int p, int r) {
+  if (p >= r) {
     return;
   }
 
-  int k = l + rand() % (r - l + 1);
-  swap(a[l], a[k]);
-  int m = partition2(a, l, r);
+  int rand_index = p + rand() % (r - p + 1);
+  swap(array[p], array[rand_index]);
+  int q = partition2(array, p, r);
 
-  randomized_quick_sort(a, l, m - 1);
-  randomized_quick_sort(a, m + 1, r);
+  randomized_quick_sort(array, p, q - 1);
+  randomized_quick_sort(array, q + 1, r);
 }
 
 int main() {
