@@ -39,10 +39,7 @@ void merge_sort(vector<int> &unsorted, int init_index, int end_index){
   }
 }
 
-void merge(vector<int> &unsorted,
-           int init_index,
-           int end_index,
-           int split_point){
+void merge(vector<int> &unsorted, int init_index, int end_index, int split_point){
 
   auto n1 = (uint) (split_point - init_index + 1);
   auto n2 = (uint) (end_index - split_point);
