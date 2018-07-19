@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 /* Write a program which gives change to an amount of money with coins 
 of the following denominations:
@@ -11,7 +12,7 @@ using namespace std;
 // Global Variables
 vector<int> denominations = {4, 3, 1};
 
-vector<int> get_change(int money) {
+int get_change_greedy(int money) {
   vector<int> used_coins;
   for(auto coin: denominations) {
     while (coin <= money) {
@@ -19,15 +20,27 @@ vector<int> get_change(int money) {
       money -= coin;
     }
   }
-  return used_coins;
+  return used_coins.size();
+}
+
+int get_change_recursive(int money) {
+  // recursive solution for the get change recursive problem
+  if (money <= 0)
+    return 0;
+  int minNumCoins = INT_MAX;
+  for (auto coin: denominations) {
+    int numCoins = get_change_recursive(money - coin);
+    if (numCoins + 1 < minNumCoins)
+      minNumCoins = numCoins + 1;
+  }
+  return minNumCoins;
 }
 
 int main() {
   int money;
   std::cin >> money;
 
-  vector<int> used_coins = get_change(money);
-  for (auto coin: used_coins) {
-    cout << "used coin: "  << coin << endl;
-  }
+  int used_coins = get_change_recursive(money);
+  cout << used_coins << endl;
+
 }
