@@ -36,11 +36,31 @@ int get_change_recursive(int money) {
   return minNumCoins;
 }
 
+int get_change_DP(int money) {
+
+  // Initialize vector of size money with INT_MAX in all its values
+  vector<int> minNumCoins(money + 1, INT_MAX);
+  minNumCoins[0] = 0;
+  for (size_t m = 1; m < money+1; m++) {
+    for(auto coin: denominations) {
+      if (m >= coin) {
+        int numCoins = minNumCoins[m - coin] + 1;
+        if (numCoins < minNumCoins[m])
+          minNumCoins[m] = numCoins;
+      }
+    }
+  }
+  for(auto coin: minNumCoins) {
+     cout << "coins: " << coin << endl;
+  }
+  return minNumCoins[money];
+}
+
 int main() {
   int money;
   std::cin >> money;
 
-  int used_coins = get_change_recursive(money);
+  int used_coins = get_change_DP(money);
   cout << used_coins << endl;
 
 }
