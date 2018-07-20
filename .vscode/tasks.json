@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ -std=c++14 -g week5_dynamic_programming1/1_money_change_again/change_dp.cpp -o output.out",
+            "command": "g++ -std=c++14 -g week5_dynamic_programming1/2_primitive_calculator/primitive_calculator.cpp -o output.out",
             "group": {
                 "kind": "build",
                 "isDefault": true

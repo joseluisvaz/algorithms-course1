@@ -1,26 +1,16 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include",
-                "/usr/local/include"
+                "/usr/include/**"
             ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64",
-            "browse": {
-                "path": [
-                    "/usr/include",
-                    "/usr/local/include",
-                    "${workspaceRoot}"
-                ],
-                "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
-            }
+            "name": "Linux",
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4
