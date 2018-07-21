@@ -1,31 +1,36 @@
 #include <iostream>
-#include <cassert>
 #include <vector>
 
 using std::vector;
 using namespace std;
 
 int binary_search(const vector<int> &array, int x) {
+
   int left = 0;
   int right = (int) array.size() - 1;
-  int middle = right / 2;
+  int middle = (right - left) / 2;
 
   for (;;)  {
-    if (array[middle] < x) {
+
+    if (array[middle] == x)
+      return middle;
+
+    if (array[middle] < x)
       left = middle;
-      middle = (right + left) / 2;
-    }
-    if (array[middle] > x) {
+
+    if (array[middle] > x)
       right = middle;
-      middle = (right + left) / 2;
-    }
 
-    if (array[middle] == x) return middle;
+    middle = (right + left) / 2;
 
-    if (middle == left) {
-      if (array[right] == x) return right;
-      if (array[left] == x) return left;
-      return -1;
+    // If right and left cursor are next to each other
+    if ((right - left) == 1) {
+      if (array[right]==x)
+        return right;
+      if (array[left]==x)
+        return left;
+      else
+        return -1;
     }
   }
 }
