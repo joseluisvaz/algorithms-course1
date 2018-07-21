@@ -75,4 +75,8 @@ int main()
   std::cin >> n;
   vector<long> sequence = optimal_sequence(n);
   std::cout << sequence.size() - 1 << std::endl;
+  for (size_t i = 0; i < sequence.size(); ++i)
+  {
+    std::cout << sequence[i] << " ";
+  }
 }

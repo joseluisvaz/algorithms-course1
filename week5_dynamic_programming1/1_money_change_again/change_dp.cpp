@@ -50,10 +50,7 @@ int get_change_DP(int money) {
       }
     }
   }
-  for(auto coin: minNumCoins) {
-     cout << "coins: " << coin << endl;
-  }
-  return minNumCoins[money];
+   minNumCoins[money];
 }
 
 int main() {
