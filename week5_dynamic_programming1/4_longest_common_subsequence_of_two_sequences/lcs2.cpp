@@ -7,43 +7,19 @@ using namespace std;
 // Dynamic programming algorithm for the longest subsequence
 
 int lcs2(vector<int> &a, vector<int> &b) {
-  int n = a.size();
-  int m = b.size();
+  int n = a.size() + 1;
+  int m = b.size() + 1;
   int S[n][m];   // Solution matrix
 
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < m; j++) {
 
-      if (a[i] == b[j]) {
-        if (i == 0 && j == 0){
-          S[i][j] = 1;
-          continue;
-        }
-        if (i == 0) {
-          S[i][j] = S[i][j-1] + 1;
-          continue;
-        }
-        if (j == 0) {
-          S[i][j] = S[i-1][j] + 1;
-          continue;
-        }
-
-        S[i][j] = max(max(S[i-1][j-1], S[i-1][j]), S[i][j-1]) + 1;
-      } 
-      else {
-        if (i == 0 && j == 0){
-          S[i][j] = 0;
-          continue;
-        }
-        if (i == 0) {
-          S[i][j] = S[i][j-1];
-          continue;
-        }
-        if (j == 0) {
-          S[i][j] = S[i-1][j];
-          continue;
-        }
-        S[i][j] = max(max(S[i-1][j-1], S[i-1][j]), S[i][j-1]);
+      if (i == 0 || j == 0) {
+         S[i][j] = 0;
+      } else if (a[i-1] == b[j-1]) {
+        S[i][j] = S[i-1][j-1] + 1;
+      } else {
+        S[i][j] = max(S[i-1][j], S[i][j-1]);
       }
     }
   }
